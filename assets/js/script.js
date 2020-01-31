@@ -3,8 +3,8 @@
 // ======================
 
 // 1st: pull initial budgetItems/lastID from localStorage to set initial variables
-
-
+const budgetItems = JSON.parse(localStorage.getItem("budgetItems")) || [];
+let lastID = parseInt(localStorage.getItem("lastID")) || 0;
 
 // ======================
 // FUNCTIONS
@@ -17,14 +17,30 @@
 // <tr data-id="2"><td>Oct 14, 2019 5:08 PM</td><td>November Rent</td><td>Rent/Mortgage</td><td>1300</td><td>Fill out lease renewal form!</td><td class="delete"><span>x</span></td></tr>
 // also, update total amount spent on page (based on selected category):
 
+function sayHi(name) {
+  console.log(`Hi, ${name}`);
+}
 
+const sayHi2 = name => {
 
+}
 // ======================
 // MAIN PROCESS
 // ======================
 
 // 2nd: wire up click event on 'Enter New Budget Item' button to toggle display of form
+$("#toggleFormButton").on("click", function() {
+  const addItemForm = $("#addItemForm");
+  const toggleButton = $("toggleFormButton");
 
+  addItemForm.toggle("slow", () => {
+    if (addItemForm.is(":visible")) {
+      toggleButton.text("Hide Form");
+    } else {
+      toggleButton.text("Enter New Budget Item");
+    }
+  });
+});
 
 // 3rd: wire up click event on 'Add Budget Item' button, gather user input and add item to budgetItems array
 // (each item's object should include: id / date / name / category / amount / notes)... then clear the form
@@ -35,9 +51,3 @@
 
 
 // 7th: wire up click event on the delete button of a given row; on click delete that budgetItem
-
-
-
-
-
-
